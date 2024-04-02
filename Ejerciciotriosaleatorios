@@ -1,0 +1,49 @@
+// Función para mezclar aleatoriamente un array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Función para agrupar alumnos en tríos
+function makeTrios(alumnos) {
+  let trios = [];
+  while (alumnos.length >= 3) {
+    trios.push(alumnos.splice(0, 3));
+  }
+  // Si queda algún alumno sin agrupar, lo añadimos a un trío existente
+  if (alumnos.length > 0) {
+    trios[Math.floor(Math.random() * trios.length)].push(alumnos[0]);
+  }
+  return trios;
+}
+
+// Función para crear tríos aleatorios de alumnos
+function crearTrios() {
+  // Array de nombres de los alumnos
+  const alumnos = [
+    "Alicia Martín", "Ana García", "Beatriz García", "Carlos Calvo", "Cristina Gema",
+    "David Peinado", "Diego Herrera", "Diego Carrasco", "Dorian David", "Eloy Sánchez",
+    "Fernando Mejías", "Gonzalo Rincón", "Guillermo Sohrabi", "Hector Enrique",
+    "Jorge Alejandro", "Juan Carlos", "Juan José Leguineche", "Luc", "Luis Martín",
+    "Marta Acitores", "Martina Gómez", "Paula Pascual", "Pedro", "Quentin",
+    "Rubén Álamo", "Teresa García", "Virginia García", "Sara Isabel", "Álvaro Iglesias",
+    "Rafael Pecino", "Hodei Medina", "Samuel Gil", "Diego Villena"
+  ];
+
+  // Mezclamos aleatoriamente el array de alumnos
+  shuffleArray(alumnos);
+
+  // Creamos los tríos
+  const trios = makeTrios(alumnos);
+
+  // Mostramos los tríos por consola
+  trios.forEach((trio, index) => {
+    console.log(`Trio ${index + 1}: ${trio.join(", ")}`);
+  });
+}
+
+// Llamamos a la función para crear tríos una sola vez
+crearTrios();
